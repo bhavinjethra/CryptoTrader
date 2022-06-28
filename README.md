@@ -4,6 +4,10 @@ Welcome to Progyny's Engineering technical assessment challenge! Please read the
 
 ## Instructions
 
+To execute the code, Launch the docker container, and then run main.py once and will log transactions every hour.
+
+	python3 main.py
+
 ### Overview
 
 Cryptocurrencies are on the rise, and we want to get in on the action. Let's build a bot that watches the prices of certain coins and their prices, and places trades for us when they hit certain levels. 

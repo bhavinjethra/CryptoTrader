@@ -4,6 +4,9 @@ from typing import Dict, List
 
 import requests
 
+from customLogger import logger
+
+
 # API Documentation - https://www.coingecko.com/en/api#explore-api
 
 
@@ -17,11 +20,16 @@ def get_coins() -> List[Dict]:
     list_of_top_coins = []
     if response.status_code == 200:
         list_of_top_coins = response.json()
+    else:
+        error_message = "Could not reach the API endpoint."
+        print(error_message)
+        logger.error(error_message)
     # Important keys
     # - id
     # - symbol
     # - name
     # - current_price
+
     return list_of_top_coins
 
 
@@ -38,7 +46,11 @@ def get_coin_price_history(coin_id: str) -> List[Dict]:
         # Item 0 -> Unix Timestamp
         # Item 1 -> price
         return response.json()['prices']
-    return []
+    else:
+        error_message = "Could not reach the API endpoint."
+        print(error_message)
+        logger.error(error_message)
+        return []
 
 
 # utilize this function when submitting an order
@@ -49,5 +61,3 @@ def submit_order(coin_id: str, quantity: int, bid: float):
     Assume order went through successfully and the return value is the price the order was filled at.
     """
     return bid
-
-

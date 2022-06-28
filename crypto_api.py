@@ -21,7 +21,7 @@ def get_coins() -> List[Dict]:
     if response.status_code == 200:
         list_of_top_coins = response.json()
     else:
-        error_message = "Could not reach the API endpoint."
+        error_message = f"{response.status_code} : No coins were retrieved."
         print(error_message)
         logger.error(error_message)
     # Important keys
@@ -47,7 +47,7 @@ def get_coin_price_history(coin_id: str) -> List[Dict]:
         # Item 1 -> price
         return response.json()['prices']
     else:
-        error_message = "Could not reach the API endpoint."
+        error_message = f"{response.status_code} No history was retrieved."
         print(error_message)
         logger.error(error_message)
         return []
